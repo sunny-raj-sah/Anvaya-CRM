@@ -17,7 +17,7 @@ const Login = () => {
     try {
       await login(email, password);
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       // Error is already handled inside AuthContext
       console.log(error)
@@ -25,7 +25,8 @@ const Login = () => {
   };
 
   return (
-    <div className="container min-vh-100 d-flex align-items-center justify-content-center">
+    // <div className="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div className="container anvaya-auth-content">
       <div
         className="card shadow-sm"
         style={{ width: "100%", maxWidth: "420px" }}

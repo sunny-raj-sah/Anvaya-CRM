@@ -6,14 +6,16 @@ export const initialLeadState = {
 
   selectedLead: null,
 
-  filters: {
-    search: "",
-    salesAgent: "",
-    status: "",
-    source: "",
-    priority: "",
-    tags: [],
-  },
+ filters: {
+  search: "",
+  salesAgent: "",
+  status: "",
+  source: "",
+  priority: "",
+  tags: "",
+  sortBy: "createdAt",
+  sortOrder: "desc",
+},
 
   loading: false,
 

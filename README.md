@@ -1,4 +1,4 @@
-# Anvaya CRM — Sales & Lead Management System
+# Anvaya CRM
 
 Anvaya CRM is a full-stack **Customer Relationship Management (CRM)** application built with the MERN stack for managing sales leads, sales agents, lead discussions, and business reports.
 

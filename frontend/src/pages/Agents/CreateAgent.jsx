@@ -14,9 +14,12 @@ const CreateAgent = () => {
   } = useAgent();
 
   const handleSubmit = async (formData) => {
-    await addAgent(formData);
-
-    navigate("/agents");
+     try {
+      await addAgent(formData);
+      navigate("/agents");
+    } catch (error) {
+      console.error("Failed to create agent:", error);
+    }
   };
 
   return (
@@ -30,6 +33,7 @@ const CreateAgent = () => {
       <AgentForm
         onSubmit={handleSubmit}
         loading={state.loading}
+            serverError={state.error}
          onCancel={() => navigate("/agents")}
         submitButtonText="Create Agent"
       />

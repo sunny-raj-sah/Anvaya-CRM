@@ -4,6 +4,7 @@ import {
   createLead,
   updateLead,
   deleteLead,
+    getLeadSources,
 } from "../services/leadService.js";
 
 /*
@@ -112,6 +113,22 @@ export const removeLead = async (
     res.status(200).json({
       message: "Lead deleted successfully",
     });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+/*
+----------------------------------------
+GET /api/leads/sources
+----------------------------------------
+*/
+export const getSources = async (req, res) => {
+  try {
+    const sources = await getLeadSources();
+
+    res.status(200).json(sources);
   } catch (error) {
     res.status(500).json({
       message: error.message,

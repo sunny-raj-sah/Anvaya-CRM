@@ -6,9 +6,14 @@ import {
   addLead,
   editLead,
   removeLead,
+    getSources,
 } from "../controllers/leadController.js";
 
 const router = express.Router();
+
+
+router.get("/sources", getSources);
+
 
 router.get("/", getLeads);
 

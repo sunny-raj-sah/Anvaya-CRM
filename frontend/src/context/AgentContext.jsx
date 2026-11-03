@@ -40,25 +40,66 @@ const AgentProvider = ({ children }) => {
     }
   };
 
-  const addAgent = async (agentData) => {
-    try {
-      const { data } =
-        await createAgent(agentData);
+  // const addAgent = async (agentData) => {
+  
+  //   try {
+  //     const { data } =
+  //       await createAgent(agentData);
 
-      dispatch({
-        type: "ADD_AGENT",
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: "SET_ERROR",
-        payload:
-          error.response?.data?.error ||
-          "Failed to create agent.",
-      });
+  //     dispatch({
+  //       type: "ADD_AGENT",
+  //       payload: data,
+  //     });
+  //       return data;
+  //   } catch (error) {
+  //     dispatch({
+  //       type: "SET_ERROR",
+  //       payload:
+  //         error.response?.data?.error ||
+  //         "Failed to create agent.",
+  //     });
+
+  //   throw error;
+  //   }
+  // };
+
+ const addAgent = async (agentData) => {
+  dispatch({
+    type: "SET_ERROR",
+    payload: null,
+  });
+
+  try {
+    const { data } = await createAgent(agentData);
+
+    dispatch({
+      type: "ADD_AGENT",
+      payload: data,
+    });
+
+    return data;
+  } catch (error) {
+    let errorMessage = "Failed to create agent. Please try again.";
+
+    if (error.response?.data?.error?.includes("E11000") ||
+        error.response?.data?.message?.includes("E11000")) {
+      errorMessage =
+        "An agent with this email already exists. Please use a different email.";
+    } else {
+      errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        errorMessage;
     }
-  };
 
+    dispatch({
+      type: "SET_ERROR",
+      payload: errorMessage,
+    });
+
+    throw error;
+  }
+};
   return (
     <AgentContext.Provider
       value={{

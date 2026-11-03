@@ -5,6 +5,8 @@ const Input = ({
   placeholder,
   value,
   onChange,
+    required,
+  min,
 }) => {
   return (
     <div className="mb-3">
@@ -19,6 +21,8 @@ const Input = ({
         name={name}
         placeholder={placeholder}
         value={value}
+          required={required}
+        min={min}
         onChange={onChange}
       />
 

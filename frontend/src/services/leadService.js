@@ -5,6 +5,10 @@ import { API } from "../constants/api";
 //   TAGS: "/tags",
   
 
+export const getLeadSources = () => {
+  return api.get(`${API.LEADS}/sources`);
+};
+
 export const getLeads = (params = {}) => {
   return api.get(API.LEADS, {
     params,
